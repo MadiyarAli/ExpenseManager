@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    @State private var activeTab: Tab = .recents
+    var body: some View{
+        TabView(selection: $activeTab) {
+            Recents()
+                .tag(Tab.recents)
+                .tabItem { Tab.recents.tabContent }
+            
+            Graphs()
+                .tag(Tab.charts)
+                .tabItem { Tab.charts.tabContent }
+            
         }
-        .padding()
+        .tint(appTint)
     }
 }
 
